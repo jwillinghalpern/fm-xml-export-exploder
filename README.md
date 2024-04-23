@@ -115,6 +115,18 @@ Contributions are welcome! Feel free to open issues or pull requests on the [Git
 
 - [ ] Parse unknown script steps:
     - [ ] TODO: List all script steps here
+    - [ ] Execute FileMaker Data API
+    - [ ] Insert Text 
+    - [ ] Insert Calculated Result
+    - [ ] Insert Current Date
+    - [ ] Insert Current Time
+    - [ ] Insert Current User Name
+    - [ ] Insert File
+    - [ ] Insert from URL
+    - [ ] Read from Data File
+    - [ ] Get Data File Position
+    - [ ] Open Data File
+    - [ ] Write to Data File [ Data source: ... ] // "Data Source" uses the "Target" dialog!
 - [ ] Parse content of FileMaker XML-Export contents:
     - [x] ExternalDataSourceCatalog
     - [x] BaseTableCatalog
