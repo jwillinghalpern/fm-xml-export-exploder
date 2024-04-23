@@ -127,6 +127,9 @@ Contributions are welcome! Feel free to open issues or pull requests on the [Git
     - [ ] Get Data File Position
     - [ ] Open Data File
     - [ ] Write to Data File [ Data source: ... ] // "Data Source" uses the "Target" dialog!
+    - [ ] Show Custom Dialog
+    - [ ] Trigger Claris Connect Flow
+    - [ ] Insert Embeddings (probably ignore for now)
 - [ ] Parse content of FileMaker XML-Export contents:
     - [x] ExternalDataSourceCatalog
     - [x] BaseTableCatalog
