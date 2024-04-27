@@ -1,8 +1,7 @@
-use crate::script_steps::shared::Target;
+use crate::script_steps::shared::parameter_values::boolean::Kind;
+use crate::script_steps::shared::ParameterValues;
 use crate::utils::attributes::get_attribute;
 
-// use quick_xml::escape::unescape;
-use quick_xml::escape::unescape;
 use quick_xml::events::Event;
 use quick_xml::Reader;
 
@@ -10,7 +9,7 @@ pub fn sanitize(step: &str) -> Option<String> {
     let mut name = String::new();
     let mut text = String::new();
     let mut select = false;
-    let mut target: Option<Target> = None;
+    let mut target: Option<crate::script_steps::shared::Target> = None;
 
     let mut reader = Reader::from_str(step);
     reader.trim_text(true);
@@ -23,40 +22,13 @@ pub fn sanitize(step: &str) -> Option<String> {
                 b"Step" => {
                     name = get_attribute(&e, "name").unwrap_or_default();
                 }
-                b"Boolean" => {
-                    // id 4096 is the "select" checkbox
-                    if get_attribute(&e, "id").unwrap_or_default() == "4096"
-                        && get_attribute(&e, "value").unwrap_or_default() == "True"
-                    {
-                        select = true;
-                    }
-                }
-                b"FieldReference" => {
-                    let name = get_attribute(&e, "name").unwrap_or_default();
-                    target = Some(Target::Field {
-                        table_occurrence: "".to_string(),
-                        name,
-                        repetition: 1,
-                    });
-                }
-                b"TableOccurrenceReference" => {
-                    let table_occurrence = get_attribute(&e, "name").unwrap_or_default();
-                    target
-                        .as_mut()
-                        .unwrap()
-                        .set_table_occurrence(table_occurrence);
-                }
-                b"Variable" => {
-                    let name = get_attribute(&e, "value").unwrap_or_default();
-                    target = Some(Target::new_variable(name));
-                }
-                b"repetition" => {
-                    let rep = get_attribute(&e, "value").unwrap_or_default();
-                    // it should be safe to unsrap because repetition is nested in either FieldReference or Variable
-                    target.as_mut().unwrap().set_repetition(&rep);
-                }
-                b"Text" => {
-                    text = get_attribute(&e, "value").unwrap_or_default();
+                b"ParameterValues" => {
+                    let parameter_values = ParameterValues::from_xml(&mut reader).unwrap();
+                    select = parameter_values
+                        .get_boolean(Kind::Select)
+                        .unwrap_or_default();
+                    target = parameter_values.get_target();
+                    text = parameter_values.get_text().unwrap();
                 }
                 _ => {}
             },
@@ -73,10 +45,10 @@ pub fn sanitize(step: &str) -> Option<String> {
             v.push("Select".to_string());
         }
         if let Some(target) = target {
-            v.push(format!("Target: {}", target.to_string()));
+            v.push(format!("Target: {}", target));
         }
         if !text.is_empty() {
-            v.push(format!("“{}”", unescape(&text).unwrap()));
+            v.push(format!("“{}”", &text));
         };
         let params = v.join(" ; ");
         if params.is_empty() {
@@ -88,7 +60,7 @@ pub fn sanitize(step: &str) -> Option<String> {
 }
 
 #[cfg(test)]
-mod tests {
+mod test {
     use super::*;
 
     #[test]
@@ -226,7 +198,20 @@ mod tests {
 			</Parameter>
 			<Parameter type="Target">
 				<FieldReference id="1" name="id" UUID="4FEADECE-195B-4BC7-83B7-57C5BBD4CD45">
-					<repetition value="1"></repetition>
+					<repetition>
+						<Calculation datatype="1" position="10">
+							<Calculation>
+								<Text><![CDATA[$myRepetition1
+		+
+		$myRepetition2]]></Text>
+								<ChunkList hash="FDD947ABD0DFD4804B5E5FD020096FA3">
+									<Chunk type="VariableReference">$myRepetition1</Chunk>
+									<Chunk type="NoRef">&#13;+&#13;</Chunk>
+									<Chunk type="VariableReference">$myRepetition2</Chunk>
+								</ChunkList>
+							</Calculation>
+						</Calculation>
+					</repetition>
 					<TableOccurrenceReference id="1065089" name="lkjflkjf" UUID="04AF7D77-38A6-4E99-B4B5-F27013E04589"></TableOccurrenceReference>
 				</FieldReference>
 			</Parameter>
@@ -236,33 +221,34 @@ mod tests {
 		</ParameterValues>
 	</Step>
 						"#;
+        // TODO: I think the calculation should actually have \r instead of \n and the \t indents should not be added. I.e. try to keep the calc as close as possible to the value stored in the script step
         let expected_output =
-            Some("Insert Text [ Select ; Target: lkjflkjf::id ; “a\rb\rc” ]".to_string());
+            Some("Insert Text [ Select ; Target: lkjflkjf::id[$myRepetition1\n\t\t+\n\t\t$myRepetition2] ; “a\rb\rc” ]".to_string());
         assert_eq!(sanitize(xml.trim()), expected_output);
     }
 
     #[test]
     fn target_field_rep() {
         let xml = r#"
-				<Step index="6" id="61" name="Insert Text" enable="True">
-		<UUID>15A4BD83-3070-419A-AAC5-9AAA0EBE5D88</UUID>
-		<OwnerID></OwnerID>
-		<Options>4101</Options>
-		<ParameterValues membercount="3">
-			<Parameter type="Boolean">
-				<Boolean type="Select" id="4096" value="True"></Boolean>
-			</Parameter>
-			<Parameter type="Target">
-				<FieldReference id="1" name="id" UUID="4FEADECE-195B-4BC7-83B7-57C5BBD4CD45">
-					<repetition value="5"></repetition>
-					<TableOccurrenceReference id="1065089" name="lkjflkjf" UUID="04AF7D77-38A6-4E99-B4B5-F27013E04589"></TableOccurrenceReference>
-				</FieldReference>
-			</Parameter>
-			<Parameter type="Text">
-				<Text value="a&#13;b&#13;c"></Text>
-			</Parameter>
-		</ParameterValues>
-	</Step>
+<Step index="6" id="61" name="Insert Text" enable="True">
+	<UUID>15A4BD83-3070-419A-AAC5-9AAA0EBE5D88</UUID>
+	<OwnerID></OwnerID>
+	<Options>4101</Options>
+	<ParameterValues membercount="3">
+		<Parameter type="Boolean">
+			<Boolean type="Select" id="4096" value="True"></Boolean>
+		</Parameter>
+		<Parameter type="Target">
+			<FieldReference id="1" name="id" UUID="4FEADECE-195B-4BC7-83B7-57C5BBD4CD45">
+				<repetition value="5"></repetition>
+				<TableOccurrenceReference id="1065089" name="lkjflkjf" UUID="04AF7D77-38A6-4E99-B4B5-F27013E04589"></TableOccurrenceReference>
+			</FieldReference>
+		</Parameter>
+		<Parameter type="Text">
+			<Text value="a&#13;b&#13;c"></Text>
+		</Parameter>
+	</ParameterValues>
+</Step>
 						"#;
         let expected_output =
             Some("Insert Text [ Select ; Target: lkjflkjf::id[5] ; “a\rb\rc” ]".to_string());

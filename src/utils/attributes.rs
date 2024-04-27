@@ -39,6 +39,26 @@ pub fn get_attribute(e: &BytesStart, name: &str) -> Option<String> {
     None
 }
 
+pub fn try_get_attribute(e: &BytesStart, name: &str) -> Result<String, String> {
+    match get_attribute(e, name) {
+        Some(value) => Ok(value),
+        None => Err(format!("missing attribute: {}", name)),
+    }
+}
+
+// TODO: get this to work
+pub fn try_get_attribute_cow<'a>(e: &'a BytesStart, name: &str) -> Result<Cow<'a, [u8]>, String> {
+    for attr in e.attributes() {
+        let Ok(attr) = attr else {
+            continue;
+        };
+        if attr.key.as_ref() == name.as_bytes() {
+            return Ok(attr.value);
+        }
+    }
+    Err(format!("missing attribute: {}", name))
+}
+
 #[cfg(test)]
 mod tests {
     use crate::utils;
@@ -56,6 +76,17 @@ mod tests {
                 utils::attributes::get_attribute(e, "value").unwrap(),
                 "$Serverscript"
             );
+        }
+    }
+
+    #[test]
+    fn test_try_get_attribute_cow() {
+        let xml = r#"<Name value="$Serverscript" id="4096"></Name>"#;
+        let mut reader = Reader::from_str(xml);
+        reader.trim_text(true);
+        if let Ok(Event::Start(ref e)) = reader.read_event() {
+            let id = utils::attributes::try_get_attribute_cow(e, "id").unwrap();
+            assert_eq!(id, "4096".as_bytes());
         }
     }
 }

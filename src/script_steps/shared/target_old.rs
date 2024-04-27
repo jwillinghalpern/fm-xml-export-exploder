@@ -1,13 +1,13 @@
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Target {
     Field {
         table_occurrence: String,
         name: String,
-        repetition: u32,
+        repetition: String,
     },
     Variable {
         name: String,
-        repetition: u32,
+        repetition: String,
     },
 }
 
@@ -15,7 +15,7 @@ impl Target {
     pub fn new_variable(name: String) -> Self {
         Target::Variable {
             name,
-            repetition: 1,
+            repetition: "".to_string(),
         }
     }
 
@@ -44,14 +44,14 @@ impl std::fmt::Display for Target {
                 name,
                 repetition,
             } => {
-                if *repetition != 1 {
+                if *repetition != "1" && !repetition.is_empty() {
                     write!(f, "{}::{}[{}]", table_occurrence, name, repetition)
                 } else {
                     write!(f, "{}::{}", table_occurrence, name)
                 }
             }
             Target::Variable { name, repetition } => {
-                if *repetition != 1 {
+                if *repetition != "1" && !repetition.is_empty() {
                     write!(f, "{}[{}]", name, repetition)
                 } else {
                     write!(f, "{}", name)

@@ -75,6 +75,7 @@ pub enum ScriptStep {
     OpenMyApps,
     Unknown,
     InsertText,
+    InsertCalculatedResult,
 }
 
 pub fn id_to_script_step(id: &str) -> ScriptStep {
@@ -120,6 +121,7 @@ pub fn id_to_script_step(id: &str) -> ScriptStep {
         "73" => ScriptStep::LoopEnd,
         "75" => ScriptStep::CommitRecordRequests,
         "76" => ScriptStep::SetFieldData,
+        "77" => ScriptStep::InsertCalculatedResult,
         "79" => ScriptStep::FixWindow,
         "82" => ScriptStep::NewFile,
         "85" => ScriptStep::AllowUserAbort,

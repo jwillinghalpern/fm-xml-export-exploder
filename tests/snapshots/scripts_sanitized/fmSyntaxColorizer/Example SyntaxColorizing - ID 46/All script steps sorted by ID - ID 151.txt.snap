@@ -78,7 +78,7 @@ Schleife (Ende)
 Gehe zu Bezugsdatensatz ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "74" ] ⚠️⚠️⚠️
 Schreibe Änderung Datens./Abfrage [ Mit Dialog: ON ]
 Feldwert setzen [  ;  ]
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
+Berechneten Wert einfügen [ Select ]
 Objekt einfügen (Windows OLE) ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "78" ] ⚠️⚠️⚠️
 Fenster fixieren
 Fenster aktualisieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "80" ] ⚠️⚠️⚠️

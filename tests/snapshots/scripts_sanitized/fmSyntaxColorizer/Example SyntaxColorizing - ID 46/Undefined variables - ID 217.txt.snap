@@ -42,15 +42,15 @@ Variable setzen [ $b ; $A_CONSTANT ]
 
 # The target variable of an Insert Calculated Results step is correctly ignored:
 # SUCCESS:
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
+Berechneten Wert einfügen [ Select ; Target: $TargetVar ; "whatever" ]
 
 # variable-read correctly recognised:
 # SUCCESS:
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
+Berechneten Wert einfügen [ Select ; Target: _Home::_gEmptyField ; $ThisIsAVar ]
 
 # However, this script text is however dubious (when you insert a variable into the current field - with NO target) MBS currently incorrectly assumes it's a target and doesn't flag the error:
 # FAIL:
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
+Berechneten Wert einfügen [ Select ; $whatever2 ]
 
 # SUCCESS: MBS correctly ignores variable names in strings
 Text einfügen [ Select ; Target: $TargetVar ; “$ThisIsNotAVariable” ]

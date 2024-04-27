@@ -245,15 +245,15 @@ Exportiere alle Feldwerte ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCR
 # Extended in fm16: TARGET = VARIABLE
 
 
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
+Berechneten Wert einfügen []
+Berechneten Wert einfügen [ Target: $TargetVar ]
+Berechneten Wert einfügen [ $SourceVar ]
+Berechneten Wert einfügen [ Target: $TargetVar ; $SourceVar ]
+Berechneten Wert einfügen [ Select ; Target: $TargetVar ]
+Berechneten Wert einfügen [ Select ; $SourceVar ]
+Berechneten Wert einfügen [ Select ; Target: $TargetVar ; $SourceVar ]
+Berechneten Wert einfügen [ Select ; Target: $TargetVar ; "Value" ]
+Berechneten Wert einfügen [ Select ; Target: _Syntax::_k1 ; _Syntax::_kCalculationChar ]
 
 
 
@@ -275,10 +275,10 @@ Benutzernamen einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIP
 Audio/Video einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "159" ] ⚠️⚠️⚠️
 Audio/Video einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "159" ] ⚠️⚠️⚠️
 
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
-Berechneten Wert einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "77" ] ⚠️⚠️⚠️
+Berechneten Wert einfügen [ Select ; Target: _Home::_gInputText1 ; "hello" ]
+Berechneten Wert einfügen [ Select ; Target:  ; 1+2 ]
+Berechneten Wert einfügen [ Select ; Target: $Target ]
+Berechneten Wert einfügen [ Select ; Target: $UseSetVariable ; "Value" ]
 
 Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
 Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
@@ -390,7 +390,7 @@ Bild einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ 
 Bild einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "56" ] ⚠️⚠️⚠️
 Bild einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "56" ] ⚠️⚠️⚠️
 
-Text einfügen [ Select ; Target: :: ; “1+2” ]
+Text einfügen [ Select ; Target:  ; “1+2” ]
 Text einfügen [ Select ; Target: _Home::_gHomeScreenInfo ; “foo bar baz” ]
 Text einfügen [ Select ; Target: $Code ; “A
 				B

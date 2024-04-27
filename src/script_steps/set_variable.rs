@@ -27,6 +27,7 @@ pub fn sanitize(step: &str) -> Option<String> {
                     value = Calculation::from_xml(&mut reader, &e).unwrap();
                 }
                 b"repetition" => {
+                    // TODO: I suspect this is broken when the rep is stored in a value attribute. Test it!
                     repetition = Calculation::from_xml(&mut reader, &e).unwrap();
                 }
                 _ => {}
