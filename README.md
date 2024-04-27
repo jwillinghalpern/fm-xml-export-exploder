@@ -14,7 +14,7 @@ FileMaker XML-Export File Exploder is a fast Rust tool designed to parse XML fil
 ## Installation
 
 1. **Download Executable:** Download the latest executable for your operating system from the [releases page](https://github.com/BC-M/fm-xml-export-exploder/releases/latest).
-2. __macOS only:__ To allow execution in Terminal, right-click on the executable and choose "Open" to bypass the security warning. After this, you can run the CLI in Terminal or Bash scripts.
+2. **macOS only:** To allow execution in Terminal, right-click on the executable and choose "Open" to bypass the security warning. After this, you can run the CLI in Terminal or Bash scripts.
 
 ## Usage
 
@@ -77,11 +77,11 @@ For multi-file solutions it can be helpful to create a separate Git repository f
 
 ## Why this structure?
 
-Well, git does not work very well with large files or large *number* of files. In our case, we mainly need to track changes in scripts, so we decided to use this structure to better review script changes in `scripts_sanitized` in a more human-readable format like scripts displayed in FileMaker. If you have a small solution with a small number of FileMaker files, you can also push all the files to a git repository.
+Well, git does not work very well with large files or large _number_ of files. In our case, we mainly need to track changes in scripts, so we decided to use this structure to better review script changes in `scripts_sanitized` in a more human-readable format like scripts displayed in FileMaker. If you have a small solution with a small number of FileMaker files, you can also push all the files to a git repository.
 
 ## Best practise
 
-- Create a FileMaker script to automatically export your solution file(s) as XML using the [Save Copy as XML command](https://help.claris.com/en/pro-help/content/save-a-copy-as-xml.html). __Tip:__ You can apply the command to any opened FileMaker file that is open with full access by window name.
+- Create a FileMaker script to automatically export your solution file(s) as XML using the [Save Copy as XML command](https://help.claris.com/en/pro-help/content/save-a-copy-as-xml.html). **Tip:** You can apply the command to any opened FileMaker file that is open with full access by window name.
 - Initialize a git repository for each [directory](#output-organization) created.
 - Extend your FileMaker script to run `git add --all`, `git commit -m "COMMIT MESSAGE HERE"` and `git push`.
 
@@ -115,6 +115,21 @@ Contributions are welcome! Feel free to open issues or pull requests on the [Git
 
 - [ ] Parse unknown script steps:
     - [ ] TODO: List all script steps here
+    - [ ] Execute FileMaker Data API
+    - [ ] Insert Text
+    - [ ] Insert Calculated Result
+    - [ ] Insert Current Date
+    - [ ] Insert Current Time
+    - [ ] Insert Current User Name
+    - [ ] Insert File
+    - [ ] Insert from URL
+    - [ ] Read from Data File
+    - [ ] Get Data File Position
+    - [ ] Open Data File
+    - [ ] Write to Data File [ Data source: ... ] // "Data Source" uses the "Target" dialog!
+    - [ ] Show Custom Dialog
+    - [ ] Trigger Claris Connect Flow
+    - [ ] Insert Embeddings (probably ignore for now)
 - [ ] Parse content of FileMaker XML-Export contents:
     - [x] ExternalDataSourceCatalog
     - [x] BaseTableCatalog
