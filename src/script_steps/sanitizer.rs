@@ -4,6 +4,8 @@ use crate::script_steps::constants::{id_to_script_step, ScriptStep};
 pub fn sanitize(step_id: &str, step_xml: &str) -> Option<String> {
     let is_enabled = script_steps::is_enabled::sanitize(step_xml);
 
+    // TODO: what if we create a Sanitize trait with a sanitize method?
+    // Then whenever we write sanitize for a type, we can just call that indiscriminantly
     let step_sanitized = match id_to_script_step(step_id) {
         ScriptStep::PerformScript => script_steps::perform_script::sanitize(step_xml),
         ScriptStep::GoToPreviousField => script_steps::primitive::sanitize(step_xml),
@@ -34,7 +36,14 @@ pub fn sanitize(step_id: &str, step_xml: &str) -> Option<String> {
         ScriptStep::Else => script_steps::primitive::sanitize(step_xml),
         ScriptStep::IfEnd => script_steps::primitive::sanitize(step_xml),
         ScriptStep::InsertText => script_steps::insert_text::sanitize(step_xml),
-        ScriptStep::InsertCalculatedResult => script_steps::insert_calculated_result::sanitize(step_xml),
+        ScriptStep::InsertCurrentDate => script_steps::insert_current_date::sanitize(step_xml),
+        ScriptStep::InsertCurrentTime => script_steps::insert_current_time::sanitize(step_xml),
+        ScriptStep::InsertCurrentUserName => {
+            script_steps::insert_current_user_name::sanitize(step_xml)
+        }
+        ScriptStep::InsertCalculatedResult => {
+            script_steps::insert_calculated_result::sanitize(step_xml)
+        }
         ScriptStep::LoopStart => script_steps::primitive::sanitize(step_xml),
         ScriptStep::ExitLoopIf => script_steps::if_start::sanitize(step_xml),
         ScriptStep::LoopEnd => script_steps::primitive::sanitize(step_xml),

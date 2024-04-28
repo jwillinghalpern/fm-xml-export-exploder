@@ -56,11 +56,11 @@ Berechneten Wert einfügen [ Select ; $whatever2 ]
 Text einfügen [ Select ; Target: $TargetVar ; “$ThisIsNotAVariable” ]
 
 # SUCCESS: MBS applies variable checking to the various Insert steps
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
+Systemdatum einfügen [ Select ; Target: $TargetVar ]
 # SUCCESS:
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
+Systemuhrzeit einfügen [ Select ; Target: $TargetVar ]
 # SUCCESS:
-Benutzernamen einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "60" ] ⚠️⚠️⚠️
+Benutzernamen einfügen [ Select ; Target: $TargetVar ]
 
 # SUCCESS:
 Von Gerät einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "161" ] ⚠️⚠️⚠️

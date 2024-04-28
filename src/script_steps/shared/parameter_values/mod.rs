@@ -13,7 +13,10 @@ use quick_xml::{
     Reader,
 };
 
-use self::{boolean::Kind, target::Target};
+use self::{
+    boolean::{Boolean, Kind},
+    target::Target,
+};
 
 pub struct ParameterValues {
     parameters: Vec<Parameter>,
@@ -86,11 +89,11 @@ impl ParameterValues {
         None
     }
 
-    pub fn get_boolean(&self, kind: Kind) -> Option<bool> {
+    pub fn get_boolean(&self, kind: Kind) -> Option<Boolean> {
         for param in &self.parameters {
             if let Parameter::Boolean(boolean) = param {
                 if boolean.kind == kind {
-                    return Some(boolean.value);
+                    return Some(boolean.clone());
                 }
             }
         }
@@ -147,15 +150,23 @@ mod tests {
         params.add_parameter(Parameter::Boolean(Boolean {
             kind: Kind::Select,
             value: true,
+            label: "Select".to_string(),
         }));
 
-        assert_eq!(params.get_boolean(Kind::Select).unwrap(), true);
+        assert_eq!(
+            params.get_boolean(Kind::Select).unwrap(),
+            Boolean::new(Kind::Select, true, "Select")
+        );
 
         params.parameters.pop();
         params.add_parameter(Parameter::Boolean(Boolean {
             kind: Kind::Select,
             value: false,
+            label: "Select".to_string(),
         }));
-        assert_eq!(params.get_boolean(Kind::Select).unwrap(), false);
+        assert_eq!(
+            params.get_boolean(Kind::Select).unwrap(),
+            Boolean::new(Kind::Select, false, "Select")
+        );
     }
 }

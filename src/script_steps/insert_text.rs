@@ -8,7 +8,7 @@ use quick_xml::Reader;
 pub fn sanitize(step: &str) -> Option<String> {
     let mut name = String::new();
     let mut text = String::new();
-    let mut select = false;
+    let mut select = None;
     let mut target: Option<crate::script_steps::shared::Target> = None;
 
     let mut reader = Reader::from_str(step);
@@ -24,9 +24,7 @@ pub fn sanitize(step: &str) -> Option<String> {
                 }
                 b"ParameterValues" => {
                     let parameter_values = ParameterValues::from_xml(&mut reader).unwrap();
-                    select = parameter_values
-                        .get_boolean(Kind::Select)
-                        .unwrap_or_default();
+                    select = parameter_values.get_boolean(Kind::Select);
                     target = parameter_values.get_target();
                     text = parameter_values.get_text().unwrap();
                 }
@@ -41,8 +39,8 @@ pub fn sanitize(step: &str) -> Option<String> {
         None
     } else {
         let mut v = Vec::with_capacity(3);
-        if select {
-            v.push("Select".to_string());
+        if let Some(select) = select {
+            v.push(select.label);
         }
         if let Some(target) = target {
             v.push(format!("Target: {}", target));

@@ -259,17 +259,17 @@ Berechneten Wert einfügen [ Select ; Target: _Syntax::_k1 ; _Syntax::_kCalculat
 
 Aus URL einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "160" ] ⚠️⚠️⚠️
 
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
+Systemdatum einfügen []
+Systemdatum einfügen [ Select ]
+Systemdatum einfügen [ Target: $UseSetVariable ]
+Systemdatum einfügen [ Select ; Target: $UseSetVariable ]
 
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
+Systemuhrzeit einfügen []
+Systemuhrzeit einfügen [ Select ]
+Systemuhrzeit einfügen [ Target: $UseSetVariable ]
+Systemuhrzeit einfügen [ Select ; Target: $UseSetVariable ]
 
-Benutzernamen einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "60" ] ⚠️⚠️⚠️
+Benutzernamen einfügen [ Select ; Target: $UseSetVariable ]
 
 
 Audio/Video einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "159" ] ⚠️⚠️⚠️
@@ -280,14 +280,14 @@ Berechneten Wert einfügen [ Select ; Target:  ; 1+2 ]
 Berechneten Wert einfügen [ Select ; Target: $Target ]
 Berechneten Wert einfügen [ Select ; Target: $UseSetVariable ; "Value" ]
 
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
-Systemdatum einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "13" ] ⚠️⚠️⚠️
+Systemdatum einfügen [ Select ; Target: _Home::_gInputText1 ]
+Systemdatum einfügen [ Select ; Target: $UseSetVariable ]
 
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
-Systemuhrzeit einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "14" ] ⚠️⚠️⚠️
+Systemuhrzeit einfügen [ Select ; Target: _Home::_gInputText2 ]
+Systemuhrzeit einfügen [ Select ; Target: $UseSetVariable ]
 
-Benutzernamen einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "60" ] ⚠️⚠️⚠️
-Benutzernamen einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "60" ] ⚠️⚠️⚠️
+Benutzernamen einfügen [ Select ; Target: _Home::_gInputText3 ]
+Benutzernamen einfügen [ Select ; Target: $UseSetVariable ]
 
 Text einfügen []
 Text einfügen [ “A

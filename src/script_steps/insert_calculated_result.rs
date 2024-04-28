@@ -11,7 +11,7 @@ use super::shared::ParameterValues;
 pub fn sanitize(step: &str) -> Option<String> {
     let mut name = String::new();
     let mut calc = String::new();
-    let mut select = false;
+    let mut select = None;
     let mut target: Option<Target> = None;
 
     let mut reader = Reader::from_str(step);
@@ -27,11 +27,9 @@ pub fn sanitize(step: &str) -> Option<String> {
                 }
                 b"ParameterValues" => {
                     let parameter_values = ParameterValues::from_xml(&mut reader).unwrap();
-                    select = parameter_values
-                        .get_boolean(Kind::Select)
-                        .unwrap_or_default();
                     target = parameter_values.get_target();
                     calc = parameter_values.get_calculation().unwrap_or_default();
+                    select = parameter_values.get_boolean(Kind::Select);
                 }
                 _ => {}
             },
@@ -44,8 +42,8 @@ pub fn sanitize(step: &str) -> Option<String> {
         None
     } else {
         let mut v = Vec::new();
-        if select {
-            v.push("Select".to_string());
+        if let Some(select) = select {
+            v.push(select.label);
         }
         if let Some(target) = target {
             v.push(format!("Target: {}", target));

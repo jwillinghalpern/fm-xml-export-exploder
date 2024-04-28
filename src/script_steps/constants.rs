@@ -76,6 +76,9 @@ pub enum ScriptStep {
     Unknown,
     InsertText,
     InsertCalculatedResult,
+    InsertCurrentDate,
+    InsertCurrentTime,
+    InsertCurrentUserName,
 }
 
 pub fn id_to_script_step(id: &str) -> ScriptStep {
@@ -90,6 +93,8 @@ pub fn id_to_script_step(id: &str) -> ScriptStep {
         "8" => ScriptStep::DuplicateRecordRequest,
         "9" => ScriptStep::DeleteRecordRequest,
         "10" => ScriptStep::DeleteAllRecords,
+        "13" => ScriptStep::InsertCurrentDate,
+        "14" => ScriptStep::InsertCurrentTime,
         "15" => ScriptStep::Unknown,
         "16" => ScriptStep::GoToRecordRequestPage,
         "17" => ScriptStep::GoToField,
@@ -112,6 +117,7 @@ pub fn id_to_script_step(id: &str) -> ScriptStep {
         "54" => ScriptStep::Unknown,
         "55" => ScriptStep::EnterBrowseMode,
         "58" => ScriptStep::Unknown,
+        "60" => ScriptStep::InsertCurrentUserName,
         "61" => ScriptStep::InsertText,
         "68" => ScriptStep::IfStart,
         "69" => ScriptStep::Else,
