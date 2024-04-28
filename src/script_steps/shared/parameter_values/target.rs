@@ -1,4 +1,4 @@
-use super::Result;
+use anyhow::{anyhow, bail, Result};
 use quick_xml::{
     events::{BytesStart, Event},
     Reader,
@@ -35,7 +35,7 @@ impl Target {
                     _ => {}
                 },
                 Event::End(e) if e.name().as_ref() == b"Parameter" => break,
-                Event::Eof => return Err("unexpected end of file".into()),
+                Event::Eof => bail!("unexpected end of file"),
                 _ => {}
             }
             buf.clear()
@@ -87,7 +87,7 @@ fn get_repetition(reader: &mut Reader<&[u8]>, e: &BytesStart) -> Result<String> 
     let value = get_attribute(e, "value");
     let res = match (name.as_ref(), value) {
         (b"repetition", Some(rep)) => rep,
-        _ => Calculation::from_xml(reader, e)?,
+        _ => Calculation::from_xml(reader, e).map_err(|e| anyhow!(e))?,
     };
     Ok(res)
 }

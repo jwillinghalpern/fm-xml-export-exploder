@@ -1,3 +1,4 @@
+use anyhow::{anyhow, Result};
 use quick_xml::events::BytesStart;
 use quick_xml::name::QName;
 use std::borrow::Cow;
@@ -39,15 +40,14 @@ pub fn get_attribute(e: &BytesStart, name: &str) -> Option<String> {
     None
 }
 
-pub fn try_get_attribute(e: &BytesStart, name: &str) -> Result<String, String> {
+pub fn try_get_attribute(e: &BytesStart, name: &str) -> Result<String> {
     match get_attribute(e, name) {
         Some(value) => Ok(value),
-        None => Err(format!("missing attribute: {}", name)),
+        None => Err(anyhow!("missing attribute: {}", name)),
     }
 }
 
-// TODO: get this to work
-pub fn try_get_attribute_cow<'a>(e: &'a BytesStart, name: &str) -> Result<Cow<'a, [u8]>, String> {
+pub fn try_get_attribute_cow<'a>(e: &'a BytesStart, name: &str) -> Result<Cow<'a, [u8]>> {
     for attr in e.attributes() {
         let Ok(attr) = attr else {
             continue;
@@ -56,7 +56,7 @@ pub fn try_get_attribute_cow<'a>(e: &'a BytesStart, name: &str) -> Result<Cow<'a
             return Ok(attr.value);
         }
     }
-    Err(format!("missing attribute: {}", name))
+    Err(anyhow!("missing attribute: {}", name))
 }
 
 #[cfg(test)]

@@ -1,5 +1,5 @@
-use super::Error;
 use crate::utils::attributes::{try_get_attribute, try_get_attribute_cow};
+use anyhow::{anyhow, Result};
 use quick_xml::{
     events::{BytesStart, Event},
     Reader,
@@ -19,6 +19,22 @@ pub enum Kind {
     WithDialog,
 }
 
+impl Kind {
+    fn from_bytes_start(e: &BytesStart) -> Result<Self> {
+        let id = try_get_attribute_cow(e, "id")?;
+        match id.as_ref() {
+            b"4096" => Ok(Kind::Select),
+            b"268435456" => Ok(Kind::VerifySslCertificates),
+            b"128" => Ok(Kind::WithDialog),
+            unknown_id => Err(anyhow::anyhow!(
+                "unknown boolean id: {}",
+                std::str::from_utf8(unknown_id).unwrap()
+            )
+            .into()),
+        }
+    }
+}
+
 impl Boolean {
     pub fn new(kind: Kind, value: bool, label: impl ToString) -> Self {
         Boolean {
@@ -28,7 +44,7 @@ impl Boolean {
         }
     }
 
-    pub fn from_xml(reader: &mut Reader<&[u8]>) -> Result<Self, Error> {
+    pub fn from_xml(reader: &mut Reader<&[u8]>) -> Result<Self> {
         let mut buf: Vec<u8> = Vec::new();
         let mut value = false;
         let mut opt_kind = None;
@@ -40,33 +56,21 @@ impl Boolean {
                 Event::Start(e) if e.name().as_ref() == b"Boolean" => {
                     value = try_get_attribute(&e, "value")? == "True";
                     opt_kind = Some(Kind::from_bytes_start(&e)?);
-                    label = try_get_attribute(&e, "type").unwrap_or("Select".to_string());
+                    label = try_get_attribute(&e, "type")?;
                 }
                 Event::End(e) if e.name().as_ref() == b"Boolean" => break,
-                Event::Eof => return Err("unexpected end of file".into()),
+                Event::Eof => return Err(anyhow!("unexpected end of file")),
                 _ => {}
             }
             buf.clear();
         }
 
-        let kind = opt_kind.ok_or("missing boolean kind")?;
+        let kind = opt_kind.ok_or(anyhow!("missing boolean kind"))?;
         Ok(Boolean::new(kind, value, label))
     }
-}
 
-impl Kind {
-    fn from_bytes_start(e: &BytesStart) -> Result<Self, Error> {
-        let id = try_get_attribute_cow(e, "id")?;
-        match id.as_ref() {
-            b"4096" => Ok(Kind::Select),
-            b"268435456" => Ok(Kind::VerifySslCertificates),
-            b"128" => Ok(Kind::WithDialog),
-            other => Err(format!(
-                "unknown boolean type: {}",
-                std::str::from_utf8(other).unwrap()
-            )
-            .into()),
-        }
+    pub fn get_label_if_true(&self) -> Option<String> {
+        self.value.then(|| self.label.clone())
     }
 }
 
@@ -103,5 +107,13 @@ mod test {
     fn test_false() {
         let xml = r#"<Boolean type="Select" id="4096" value="False"></Boolean>"#;
         test_boolean(xml, Boolean::new(Kind::Select, false, "Select"));
+    }
+
+    #[test]
+    fn test_unhandled_kind() {
+        let xml = r#"<Boolean type="Select" id="1234" value="True"></Boolean>"#;
+        let mut reader = Reader::from_str(xml);
+        let result = Boolean::from_xml(&mut reader);
+        assert!(result.is_err());
     }
 }

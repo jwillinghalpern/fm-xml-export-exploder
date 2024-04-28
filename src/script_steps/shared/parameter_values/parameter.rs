@@ -5,7 +5,8 @@ use quick_xml::{
 };
 
 // TODO: should we `mod boolean` in this file instad?
-use super::{boolean::Boolean, Result};
+use super::boolean::Boolean;
+use anyhow::{anyhow, bail, Result};
 
 pub use crate::script_steps::shared::parameter_values::target::Target;
 
@@ -24,13 +25,13 @@ pub enum Parameter {
 
 impl Parameter {
     pub fn from_xml(reader: &mut Reader<&[u8]>, e: &BytesStart) -> Result<Self> {
-        let parameter_type = get_attribute(e, "type").ok_or("missing attribute: type")?;
+        let parameter_type = get_attribute(e, "type").ok_or(anyhow!("missing attribute: type"))?;
         match parameter_type.as_str() {
             "Boolean" => Ok(Parameter::Boolean(Boolean::from_xml(reader)?)),
             "Text" => Ok(Parameter::Text(parse_text(reader)?)),
             "Target" => Ok(Parameter::Target(Target::from_xml(reader)?)),
             "Calculation" => {
-                let calculation = Calculation::from_xml(reader, e)?;
+                let calculation = Calculation::from_xml(reader, e).map_err(|e| anyhow!(e))?;
                 Ok(Parameter::Calculation(calculation))
             }
             // "Comment" => todo(),
@@ -39,7 +40,7 @@ impl Parameter {
             // "UniversalPathList" => todo!(),
             // "id" => todo!(),
             // "size" => todo!(),
-            _ => Err(format!("unknown parameter type: {}", parameter_type).into()),
+            _ => Err(anyhow!("unknown parameter type: {}", parameter_type)),
         }
     }
 }
@@ -63,7 +64,7 @@ fn parse_text(reader: &mut Reader<&[u8]>) -> Result<String> {
                 }
             }
             Event::End(e) if e.name().as_ref() == b"Text" => break,
-            Event::Eof => return Err("unexpected end of file".into()),
+            Event::Eof => bail!("unexpected end of file"),
             _ => {}
         }
         buf.clear();
@@ -490,3 +491,111 @@ mod test {
 
     */
 }
+
+/*
+
+######################
+OTHER TYPES
+######################
+
+Animation
+Author
+Boolean
+Button1 // can have a value="USER ENTERED LABEL HERE"
+Button2 // can have a value="USER ENTERED LABEL HERE"
+Button3 // can have a value="USER ENTERED LABEL HERE"
+Calculation
+Camera
+Comment
+Condition
+CustomDebugInfo
+CustomMenuSet
+DataSourceReference
+DisableExternalControls
+DisableInteraction
+Duration
+Email
+End
+ErrorCode
+ErrorMessage
+Export
+Field1
+Field2
+Field3
+FieldReference
+FindRequest
+FunctionRef
+Hide
+ImportField
+JSONOutput
+Keywords
+Label
+Latitude
+LayoutReferenceContainer
+List
+Location
+Longitude
+Major
+Message
+Minor
+Monitor
+Name
+New
+Object
+Old
+Options
+PageSetup
+Parameter
+Password
+PauseInBackground
+Portal
+Presentation
+Print
+PrivilegeSetReference
+Prompt
+Radius
+ReadMultiple
+Records
+Related
+Resolution
+Restore
+SQL
+ScriptReference
+Select
+Sequence
+SortSpecification
+Source
+Start
+Subject
+Target
+Text
+Timeout
+Title
+URL
+UUID
+UniversalPathList
+Variable
+Voice
+Volume
+Wait
+WindowReference
+Worksheet
+Zoom
+across
+action
+case
+direction
+find
+from
+id
+name
+operation
+perform
+position
+replace
+size
+type
+whole
+within
+
+*/

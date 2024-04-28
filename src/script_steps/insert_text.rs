@@ -40,9 +40,7 @@ pub fn sanitize(step: &str) -> Option<String> {
     } else {
         let mut v = Vec::with_capacity(3);
         if let Some(select) = select {
-            if select.value {
-                v.push(select.label);
-            }
+            select.get_label_if_true().map(|label| v.push(label));
         }
         if let Some(target) = target {
             v.push(format!("Target: {}", target));
