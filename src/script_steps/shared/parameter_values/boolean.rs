@@ -20,7 +20,7 @@ pub enum Kind {
 }
 
 impl Boolean {
-    pub fn new(kind: Kind, value: bool, label: &str) -> Self {
+    pub fn new(kind: Kind, value: bool, label: impl ToString) -> Self {
         Boolean {
             kind,
             value,
@@ -50,7 +50,7 @@ impl Boolean {
         }
 
         let kind = opt_kind.ok_or("missing boolean kind")?;
-        Ok(Boolean { kind, value, label })
+        Ok(Boolean::new(kind, value, label))
     }
 }
 
@@ -86,10 +86,10 @@ mod test {
     fn test_select_parameter() {
         let xml = r#"
 			<Parameter type="Boolean">
-				<Boolean type="Select" id="4096" value="True"></Boolean>
+				<Boolean type="Auswahl" id="4096" value="True"></Boolean>
 			</Parameter>
 		"#;
-        test_boolean(xml, Boolean::new(Kind::Select, true, "Select"));
+        test_boolean(xml, Boolean::new(Kind::Select, true, "Auswahl"));
     }
 
     #[test]
