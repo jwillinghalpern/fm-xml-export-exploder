@@ -14,8 +14,8 @@ Datensatz/Abfrage löschen [ Mit Dialog: ON ]
 Alle Datensätze löschen [ Mit Dialog: ON ]
 Aus Index einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "11" ] ⚠️⚠️⚠️
 Aus zuletzt geöffnetem Satz einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "12" ] ⚠️⚠️⚠️
-Systemdatum einfügen [ Select ]
-Systemuhrzeit einfügen [ Select ]
+Systemdatum einfügen [ Auswahl ]
+Systemuhrzeit einfügen [ Auswahl ]
 # Command ID 15 <unknown>
 Gehe zu Datens./Abfrage/Seite [ Erste(r) ]
 Gehe zu Feld []
@@ -61,8 +61,8 @@ Bild einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ 
 Event senden ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "57" ] ⚠️⚠️⚠️
 # Command ID 58 <unknown>
 QuickTime einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "59" ] ⚠️⚠️⚠️
-Benutzernamen einfügen [ Select ]
-Text einfügen [ Select ]
+Benutzernamen einfügen [ Auswahl ]
+Text einfügen [ Auswahl ]
 Scriptpause setzen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "62" ] ⚠️⚠️⚠️
 E-Mail senden ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "63" ] ⚠️⚠️⚠️
 DDE Execute senden ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "64" ] ⚠️⚠️⚠️
@@ -78,7 +78,7 @@ Schleife (Ende)
 Gehe zu Bezugsdatensatz ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "74" ] ⚠️⚠️⚠️
 Schreibe Änderung Datens./Abfrage [ Mit Dialog: ON ]
 Feldwert setzen [  ;  ]
-Berechneten Wert einfügen [ Select ]
+Berechneten Wert einfügen [ Auswahl ]
 Objekt einfügen (Windows OLE) ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "78" ] ⚠️⚠️⚠️
 Fenster fixieren
 Fenster aktualisieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "80" ] ⚠️⚠️⚠️

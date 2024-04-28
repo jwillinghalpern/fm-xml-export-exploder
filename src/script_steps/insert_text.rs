@@ -40,7 +40,9 @@ pub fn sanitize(step: &str) -> Option<String> {
     } else {
         let mut v = Vec::with_capacity(3);
         if let Some(select) = select {
-            v.push(select.label);
+            if select.value {
+                v.push(select.label);
+            }
         }
         if let Some(target) = target {
             v.push(format!("Target: {}", target));
@@ -277,7 +279,7 @@ mod test {
         "#;
 
         let expected_output =
-            Some("Text einfügen [ Select ; Target: $idleCalcExpression ; “\"hello\" & \rList(\"RemoteControl.PressKey\" ; \"l\" ; \"l\" )” ]".to_string());
+            Some("Text einfügen [ Auswahl ; Target: $idleCalcExpression ; “\"hello\" & \rList(\"RemoteControl.PressKey\" ; \"l\" ; \"l\" )” ]".to_string());
         assert_eq!(sanitize(xml_input.trim()), expected_output);
     }
 }

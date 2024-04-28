@@ -20,7 +20,7 @@ expression: output_content
 
 # You may want to provide an example template of the code to pass parameters in:
 # - either as a commented out Insert Text step
-// Text einfügen [ Select ; Target: $@example ; “$param1 & ¶ &
+// Text einfügen [ Auswahl ; Target: $@example ; “$param1 & ¶ &
 				$optParam2 & ¶ &
 				$optParam3
 				” ]
@@ -80,7 +80,7 @@ Script ausführen [ Aus Liste ; "" ]
 
 Gehe zu Layout [ Layout: "Palettes" ; Animation: Ohne ]
 Suchenmodus aktivieren [ Pause: OFF ]
-Berechneten Wert einfügen [ Select ; Target: _Palette::_gDuplicatePaletteFrom ; _Palette::__ID ]
+Berechneten Wert einfügen [ Auswahl ; Target: _Palette::_gDuplicatePaletteFrom ; _Palette::__ID ]
 Ergebnismenge suchen [ ⚠️ RESTORE ⚠️ ]
 Sortieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "39" ] ⚠️⚠️⚠️
 

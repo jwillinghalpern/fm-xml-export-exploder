@@ -1,6 +1,10 @@
 use crate::script_steps;
 use crate::script_steps::constants::{id_to_script_step, ScriptStep};
 
+pub trait Sanitize {
+    fn sanitize(step_id: &str, step_xml: &str) -> Option<String>;
+}
+
 pub fn sanitize(step_id: &str, step_xml: &str) -> Option<String> {
     let is_enabled = script_steps::is_enabled::sanitize(step_xml);
 
@@ -36,11 +40,9 @@ pub fn sanitize(step_id: &str, step_xml: &str) -> Option<String> {
         ScriptStep::Else => script_steps::primitive::sanitize(step_xml),
         ScriptStep::IfEnd => script_steps::primitive::sanitize(step_xml),
         ScriptStep::InsertText => script_steps::insert_text::sanitize(step_xml),
-        ScriptStep::InsertCurrentDate => script_steps::insert_current_date::sanitize(step_xml),
-        ScriptStep::InsertCurrentTime => script_steps::insert_current_time::sanitize(step_xml),
-        ScriptStep::InsertCurrentUserName => {
-            script_steps::insert_current_user_name::sanitize(step_xml)
-        }
+        ScriptStep::InsertCurrentDate => script_steps::insert_current::sanitize(step_xml),
+        ScriptStep::InsertCurrentTime => script_steps::insert_current::sanitize(step_xml),
+        ScriptStep::InsertCurrentUserName => script_steps::insert_current::sanitize(step_xml),
         ScriptStep::InsertCalculatedResult => {
             script_steps::insert_calculated_result::sanitize(step_xml)
         }
@@ -106,6 +108,7 @@ pub fn sanitize(step_id: &str, step_xml: &str) -> Option<String> {
         }
         Some(step) => match is_enabled {
             true => Some(step),
+            // TODO: should we comment out every single line in multiline results?
             false => Some(format!("// {}", step)),
         },
     }

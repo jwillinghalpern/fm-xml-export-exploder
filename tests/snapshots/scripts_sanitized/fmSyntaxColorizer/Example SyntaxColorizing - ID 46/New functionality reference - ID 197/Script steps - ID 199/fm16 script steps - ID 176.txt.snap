@@ -3,13 +3,13 @@ source: src/main.rs
 expression: output_content
 ---
 # Changed: TARGET VARIABLE
-Text einfügen [ Select ; Target: $Code ; “A
+Text einfügen [ Auswahl ; Target: $Code ; “A
 				B
 				C” ]
-Berechneten Wert einfügen [ Select ; Target: $UseSetVariable ; "Value" ]
-Systemdatum einfügen [ Select ; Target: $UseSetVariable ]
-Systemuhrzeit einfügen [ Select ; Target: $UseSetVariable ]
-Benutzernamen einfügen [ Select ; Target: $UseSetVariable ]
+Berechneten Wert einfügen [ Auswahl ; Target: $UseSetVariable ; "Value" ]
+Systemdatum einfügen [ Auswahl ; Target: $UseSetVariable ]
+Systemuhrzeit einfügen [ Auswahl ; Target: $UseSetVariable ]
+Benutzernamen einfügen [ Auswahl ; Target: $UseSetVariable ]
 Datei einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "131" ] ⚠️⚠️⚠️
 Aus URL einfügen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "160" ] ⚠️⚠️⚠️
 

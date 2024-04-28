@@ -96,7 +96,7 @@ mod test {
     fn test_select_raw() {
         let xml = r#"<Boolean type="Select Other Label" id="4096" value="True">
 				</Boolean>"#;
-        test_boolean(xml, Boolean::new(Kind::Select, true, "Select"));
+        test_boolean(xml, Boolean::new(Kind::Select, true, "Select Other Label"));
     }
 
     #[test]

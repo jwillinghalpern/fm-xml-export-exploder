@@ -293,7 +293,7 @@ Ende (wenn)
 
 
 # # Define ALL parameter names & other Script Settings
-Text einfügen [ Select ; Target: $fmide_parameter_names_all ; “account_name
+Text einfügen [ Auswahl ; Target: $fmide_parameter_names_all ; “account_name
 				base_table_name
 				custom_function_name
 				custom_menu_item_name
@@ -1363,7 +1363,7 @@ Schleife (Anfang)
 			
 			Wenn [ $resource = "fmIDE_keyboard_buffer_retype_script" ]
 				Wenn [ $o_s_3 = "Mac" ]
-					Text einfügen [ Select ; Target: $resource ; “(* fmIDE_keyboard_buffer_retype.scpt
+					Text einfügen [ Auswahl ; Target: $resource ; “(* fmIDE_keyboard_buffer_retype.scpt
 									 *
 									 * Re-types the text saved in the fmIDE keyboard buffer file. It produces keystrokes as if the content of the text buffer is being retyped.
 									 *
@@ -1392,7 +1392,7 @@ Schleife (Anfang)
 									end try” ]
 					Variable setzen [ $aok ; Wahr ]
 				Sonst, wenn [ $o_s_3 = "Win" ]
-					Text einfügen [ Select ; Target: $resource ; “Windows Script not yet implemented” ]
+					Text einfügen [ Auswahl ; Target: $resource ; “Windows Script not yet implemented” ]
 					Variable setzen [ $aok ; Falsch ]
 				Sonst
 					Variable setzen [ $resource ; "" ]
@@ -1613,7 +1613,7 @@ Schleife (Anfang)
 				
 				# FIXME
 				# AppleScript?
-				Text einfügen [ Select ; Target: $AppleScriptTemplate ; “go to field {{'$layout_field_name'}} of current record” ]
+				Text einfügen [ Auswahl ; Target: $AppleScriptTemplate ; “go to field {{'$layout_field_name'}} of current record” ]
 				Variable setzen [ $AppleScript ; Austauschen ( $AppleScriptTemplate ; "{{'$layout_field_name'}}" ; Zitat( $layout_field_name ) ) ]
 				AppleScript ausführen ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "67" ] ⚠️⚠️⚠️
 				
@@ -2091,7 +2091,7 @@ Schleife (Anfang)
 		Sonst, wenn [ $action_name = "OpenManageCustomFunctions" ]
 			# @see wiki https://github.com/fmIDE/fmIDE/wiki/fmIDE-Actions/#open-manage-custom-functions
 			# It's not possible to open this menu while a script is running, so click the menu once after halting with the MBS plugin
-			Text einfügen [ Select ; Target: $idleCalcExpression ; “MBS( "Menubar.RunMenuCommand"; 51191 /*  File Manage Custom Functions... */ )” ]
+			Text einfügen [ Auswahl ; Target: $idleCalcExpression ; “MBS( "Menubar.RunMenuCommand"; 51191 /*  File Manage Custom Functions... */ )” ]
 			Fenster aktivieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "123" ] ⚠️⚠️⚠️
 			Variable setzen [ $$MBS_ScheduleRef ; MBS( "Schedule.EvaluateAfterDelay"; 1/10; Liste(
 							"Let([" ;
@@ -2110,7 +2110,7 @@ Schleife (Anfang)
 		Sonst, wenn [ $action_name = "OpenManageCustomMenus" ]
 			# @see wiki https://github.com/fmIDE/fmIDE/wiki/fmIDE-Actions/#open-manage-custom-menus
 			# It's not possible to open this menu while a script is running, so click the menu once after halting with the MBS plugin
-			Text einfügen [ Select ; Target: $idleCalcExpression ; “MBS( "Menubar.RunMenuCommand"; 51222 /*  File Manage Custom Menus... */ )” ]
+			Text einfügen [ Auswahl ; Target: $idleCalcExpression ; “MBS( "Menubar.RunMenuCommand"; 51222 /*  File Manage Custom Menus... */ )” ]
 			Fenster aktivieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "123" ] ⚠️⚠️⚠️
 			Variable setzen [ $$MBS_ScheduleRef ; MBS( "Schedule.EvaluateAfterDelay"; 1/10; Liste(
 							"Let([" ;
@@ -2148,7 +2148,7 @@ Schleife (Anfang)
 		Sonst, wenn [ $action_name = "OpenManageSecurity" ]
 			# @see wiki https://github.com/fmIDE/fmIDE/wiki/fmIDE-Actions/#open-manage-security
 			# It's not possible to open this menu while a script is running, so click the menu once after halting with the MBS plugin
-			Text einfügen [ Select ; Target: $idleCalcExpression ; “MBS( "Menubar.RunMenuCommand"; 51155 /*  File Manage Security... */ )” ]
+			Text einfügen [ Auswahl ; Target: $idleCalcExpression ; “MBS( "Menubar.RunMenuCommand"; 51155 /*  File Manage Security... */ )” ]
 			Fenster aktivieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "123" ] ⚠️⚠️⚠️
 			Variable setzen [ $$MBS_ScheduleRef ; MBS( "Schedule.EvaluateAfterDelay"; 1/10; Liste(
 							"Let([" ;
@@ -2208,7 +2208,7 @@ Schleife (Anfang)
 		Sonst, wenn [ $action_name = "Paste" ]
 			# @see wiki https://github.com/fmIDE/fmIDE/wiki/fmIDE-Actions/#paste
 			# Press CmdCtrl+V
-			Text einfügen [ Select ; Target: $idleCalcExpression ; “MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 1 ) & 
+			Text einfügen [ Auswahl ; Target: $idleCalcExpression ; “MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 1 ) & 
 MBS( "RemoteControl.PressKey" ; "v" ; "v" ) & 
 MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 0 ) &
 ""” ]
@@ -2222,7 +2222,7 @@ MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 0 ) &
 			# @see wiki https://github.com/fmIDE/fmIDE/wiki/fmIDE-Actions/#paste-in-current-layout
 			# Bring window to front and press CmdCtrl+L, CmdCtrl+V
 			Fenster aktivieren ⚠️⚠️⚠️ FM-XML-EXPORT-EXPLODER: UNKNOWN SCRIPT-STEP [ ID: "123" ] ⚠️⚠️⚠️
-			Text einfügen [ Select ; Target: $idleCalcExpression ; “MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 1 ) & 
+			Text einfügen [ Auswahl ; Target: $idleCalcExpression ; “MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 1 ) & 
 MBS( "RemoteControl.PressKey" ; "l" ; "l" ) & 
 MBS( "RemoteControl.PressKey" ; "v" ; "v" ) & 
 MBS( $MBS_RemoteControl.PressCommandOrControlKey ; 0 ) &

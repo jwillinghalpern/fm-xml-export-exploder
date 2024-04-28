@@ -5,6 +5,7 @@ use crate::utils::attributes::get_attribute;
 use quick_xml::events::Event;
 use quick_xml::Reader;
 
+/// shared by `Insert Current Date`, `Insert Current Time`, `Insert Current User Name`
 pub fn sanitize(step: &str) -> Option<String> {
     let mut name = String::new();
     let mut select = None;
