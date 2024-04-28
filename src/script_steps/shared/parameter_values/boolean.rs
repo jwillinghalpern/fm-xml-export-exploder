@@ -17,6 +17,54 @@ pub enum Kind {
     Select,
     VerifySslCertificates,
     WithDialog,
+    // Generic, // this is used for things like Allow User Abort, which doesn't include a label/type attr
+    // AllowFolderCreation,
+    // AppendLineFeed,
+    // AppendToExistingPdf,
+    // Commit,
+    // Condition,
+    // CreateFolders,
+    // DisableExternalControls,
+    // DisableInteraction,
+    // ErrorCode,
+    // ExitAfterLast,
+    // ExpirePassword,
+    // FlushCachedExternalData,
+    // FlushCachedJoinResults,
+    // ForceCommit,
+    // Hide,
+    // IncludeEditRecordToolbar,
+    // Lock,
+    // MatchCase,
+    // MatchWholeWordsOnly,
+    // NoDialog,
+    // NoStyle,
+    // OpenFile,
+    // OpenHidden,
+    // OverrideEssLockingConflicts,
+    // Password,
+    // Pause,
+    // PauseInBackground,
+    // Select,
+    // SelectPerform,
+    // SkipIndexes,
+    // SkipDataEntryValidation,
+    // SpecifyTargetField,
+    // StoreOnlyAReference,
+    // UpdateEntryOptions,
+    // UseAsFileDefault,
+    // UseFieldNamesAsColumnNames,
+    // VerifySslCertificates,
+    // WaitForCompletion,
+    // WithDialog,
+    // WithDialog,
+    // Enabled,
+    // Enable,
+    // Enable,
+    // MaxDuration,
+    // Password,
+    // StartImmediately,
+    // Wait,
 }
 
 impl Kind {
@@ -117,3 +165,54 @@ mod test {
         assert!(result.is_err());
     }
 }
+
+/*
+// Generic	<Boolean id="131072" value="True"></Boolean>
+// AllowFolderCreation	<Boolean type="Allow Folder Creation" id="256" value="True"></Boolean>
+// AppendLineFeed	<Boolean type="Append line feed" id="512" value="True"></Boolean>
+// AppendToExistingPdf	<Boolean type="Append to existing PDF" id="256" value="True"></Boolean>
+// Commit	<Boolean type="Commit" value="True"></Boolean>
+// Condition	<Boolean type="Condition" id="256" value="True"></Boolean>
+// CreateFolders	<Boolean type="Create folders" id="512" value="True"></Boolean>
+// DisableExternalControls	<Boolean type="DisableExternalControls" value="True"></Boolean>
+// DisableInteraction	<Boolean type="DisableInteraction" value="True"></Boolean>
+// ErrorCode	<Boolean type="Error Code" id="512" value="True"></Boolean>
+// ExitAfterLast	<Boolean type="Exit after last" position="184" value="True"></Boolean>
+// ExpirePassword	<Boolean type="Expire password" value="True"></Boolean>
+// FlushCachedExternalData	<Boolean type="Flush cached external data" id="512" value="True"></Boolean>
+// FlushCachedJoinResults	<Boolean type="Flush cached join results" id="256" value="True"></Boolean>
+// ForceCommit	<Boolean type="Force Commit" id="512" value="True"></Boolean>
+// Hide	<Boolean type="Hide" value="True"></Boolean>
+// IncludeEditRecordToolbar	<Boolean type="Include Edit Record Toolbar" id="256" value="True"></Boolean>
+// Lock	<Boolean type="Lock" id="524288" value="True"></Boolean>
+// MatchCase	<Boolean type="Match case" value="True"></Boolean>
+// MatchWholeWordsOnly	<Boolean type="Match whole words only" value="True"></Boolean>
+// NoDialog	<Boolean type="No dialog" value="True"></Boolean>
+// NoStyle	<Boolean type="No style" id="512" value="True"></Boolean>
+// OpenFile	<Boolean type="Open File" id="256" value="True"></Boolean>
+// OpenHidden	<Boolean type="Open hidden" id="256" value="True"></Boolean>
+// OverrideEssLockingConflicts	<Boolean type="Override ESS locking conflicts" id="512" value="True"></Boolean>
+// Password	<Boolean type="Password" value="True"></Boolean>
+// Pause	<Boolean type="Pause" id="16777216" value="True"></Boolean>
+// PauseInBackground	<Boolean type="PauseInBackground" value="True"></Boolean>
+// Select	<Boolean type="Select" id="4096" value="True"></Boolean>
+// SelectPerform	<Boolean type="Select/perform" id="4096" value="True"></Boolean>
+// SkipIndexes	<Boolean type="Skip Indexes" id="512" value="True"></Boolean>
+// SkipDataEntryValidation	<Boolean type="Skip data entry validation" id="256" value="True"></Boolean>
+// SpecifyTargetField	<Boolean type="Specify target field" id="134217728" value="True"></Boolean>
+// StoreOnlyAReference	<Boolean type="Store only a reference" id="2048" value="True"></Boolean>
+// UpdateEntryOptions	<Boolean type="Update Entry Options" value="True"></Boolean>
+// UseAsFileDefault	<Boolean type="Use as file default" id="512" value="True"></Boolean>
+// UseFieldNamesAsColumnNames	<Boolean type="Use field names as column names" value="True"></Boolean>
+// VerifySslCertificates	<Boolean type="Verify SSL Certificates" id="268435456" value="True"></Boolean>
+// WaitForCompletion	<Boolean type="Wait for completion" id="256" value="True"></Boolean>
+// WithDialog	<Boolean type="With dialog" id="128" value="True"></Boolean>
+// WithDialog	<Boolean type="With dialog" position="156" value="True"></Boolean>
+// Enabled	<Boolean type="enabled" id="256" value="True"></Boolean>
+// Enable	<Boolean value="True" name="Activate" type="enable"></Boolean>
+// Enable	<Boolean value="True" name="Deactivate" type="enable"></Boolean>
+// MaxDuration	<Boolean value="True" type="Max duration"></Boolean>
+// Password	<Boolean value="True" type="Password"></Boolean>
+// StartImmediately	<Boolean value="True" type="Start immediately"></Boolean>
+// Wait	<Boolean value="True" type="Wait"></Boolean>
+ */

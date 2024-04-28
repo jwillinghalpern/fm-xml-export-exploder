@@ -12,6 +12,8 @@ quick-xml = { version = "0.31.0", features =["escape-html"] }
 regex = "1.10.3"
 clap = { version = "4.5.2", features = ["derive"] }
 anyhow = "1.0.81"
+strum = { version = "0.26.2", features = ["strum_macros"] }
+strum_macros = "0.26.2"
 
 [dev-dependencies]
 walkdir = "2.5.0"
