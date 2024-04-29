@@ -17,6 +17,8 @@ pub enum Kind {
     Select,
     VerifySslCertificates,
     WithDialog,
+
+		// #[strum(serialize = "131072")]
     // Generic, // this is used for things like Allow User Abort, which doesn't include a label/type attr
     // AllowFolderCreation,
     // AppendLineFeed,
@@ -57,12 +59,9 @@ pub enum Kind {
     // VerifySslCertificates,
     // WaitForCompletion,
     // WithDialog,
-    // WithDialog,
     // Enabled,
     // Enable,
-    // Enable,
     // MaxDuration,
-    // Password,
     // StartImmediately,
     // Wait,
 }
